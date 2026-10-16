@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MoodMirror AI</title><link rel="stylesheet" href="styles.css"></head><body>
+<canvas id="bg"></canvas>
+<header><div class="logo">◉ Mood<b>Mirror</b> AI</div><div><button class="ghost qrb">📱 QR</button> <button class="ghost" id="kioskBtn">⛶ Exhibition</button> <button class="ghost" id="setBtn">⚙</button></div></header>
+<div id="err" class="glass hidden"><span id="errMsg"></span> <button id="errRetry" class="hidden">Retry</button> <button class="ghost" onclick="this.parentNode.classList.add('hidden')">✕</button></div>
+<main>
+<section id="landing"><h1>Mood<span>Mirror</span> AI</h1><p class="tag">Your Expression. Your Vibe. Your Character.</p>
+<p id="event" class="muted"></p><button class="glow big" id="startBtn">Discover My Mood</button><br><button class="ghost qrb">📱 Open on your phone</button>
+<p class="muted small">Estimated facial expressions only — not real emotions. Matches are for fun. Photos stay on your device.</p></section>
+<section id="studio" class="hidden"><div class="glass cam"><video id="video" playsinline muted></video><canvas id="snap" class="hidden"></canvas><img id="prev" class="hidden" alt="">
+<div id="scan" class="hidden"></div><div id="camStatus" class="muted small">Camera is off.</div></div>
+<div class="row"><button class="glow" id="camOn">Start Camera</button><button id="chalBtn">🎯 Challenge</button><button id="camOff" class="ghost">Stop</button><button id="switchCam" class="ghost">Switch Camera</button>
+<button id="capBtn">📸 Capture</button><label class="btn">Upload Photo<input type="file" id="file" accept="image/jpeg,image/png,image/webp" hidden></label><label class="btn">🤳 Take Selfie<input type="file" id="file2" accept="image/*" capture="user" hidden></label></div>
+<div class="row"><label class="small">Match me with: <select class="gsel"><option value="any">Any</option><option value="m">Male</option><option value="f">Female</option></select></label></div><div class="row"><button class="glow" id="analyzeBtn">Analyze</button><button class="ghost" id="retakeBtn">Retake</button><button class="ghost" id="removeBtn">Remove Photo</button></div><div id="chal" class="glass hidden"><h3>🎯 Expression Challenge</h3><div id="tgt" class="big-label"></div>
+<p class="muted small">Start the camera, make the face, then press Score Me.</p>
+<input id="nick" placeholder="Nickname" maxlength="16"> <button class="glow" id="scoreBtn">Score Me</button> <button class="ghost" id="newT">New Challenge</button>
+<div id="cres" class="big-label"></div><h4>🏆 Leaderboard</h4><ol id="lb"></ol><div><button class="ghost" id="clearLb">Clear Leaderboard</button></div>
+<p class="muted small">Scores stay on this device. No photos are saved. Just for fun!</p></div></section>
+<section id="results" class="hidden"><div class="grid">
+<div class="glass"><h3>Your Expression</h3><div class="thumbwrap"><canvas id="thumb"></canvas></div><div id="label" class="big-label"></div><div id="cues" class="muted"></div><div id="bars"></div>
+<label class="small"><input type="checkbox" id="lmToggle"> Show landmarks</label><p class="muted small">Estimated expression, heuristic cue strengths — not calibrated probabilities.</p></div>
+<div class="glass" id="bollyBox"><h3>Your Bollywood Match</h3><div id="bolly"></div></div>
+<div class="glass" id="animeBox"><h3>Your Anime Match</h3><div id="anime"></div></div></div>
+<div class="glass" id="rec"></div><div class="glass" id="badges"></div>
+<div class="row"><label class="small">Match me with: <select class="gsel"><option value="any">Any</option><option value="m">Male</option><option value="f">Female</option></select></label></div><div class="row"><button class="glow" data-mode="bolly">Find My Bollywood Twin Expression</button><button class="glow" data-mode="anime">Find My Anime Vibe</button><button class="glow" data-mode="both">Show Both</button><button data-mode="surprise">🎲 Surprise Me</button></div>
+<div class="glass"><h3>More matches</h3><div id="gallery" class="gal"></div></div>
+<div class="row"><button class="glow" id="dl">Download Card</button><button id="shareBtn">Share</button><button class="ghost" id="cpCap">Copy Caption</button><button class="ghost" id="cpSum">Copy Summary</button><button class="ghost" id="again">Analyze Again</button><button id="next" class="ghost hidden">Next Visitor</button></div></section>
+<p class="muted small" style="text-align:center">Portraits via Wikipedia/Wikimedia, Jikan (MyAnimeList), AniList and TMDB — this product uses the TMDB API but is not endorsed or certified by TMDB. For demo use.</p></main>
+<button class="ghost" id="sndBtn"></button>
+<dialog id="qrd" class="glass"><h3>📱 Open on your phone</h3><div id="qrimg"></div><input id="qrUrl" placeholder="http://192.168.x.x:8000 or https://..."><br><button class="glow" id="qrGen">Make QR</button> <button class="ghost" onclick="qrd.close()">Close</button><p id="qrNote" class="muted small"></p></dialog>
+<dialog id="dlg" class="glass"><h3>Settings</h3><label>College <input id="sCol"></label><label>Event <input id="sEv"></label><label>TMDB API key (optional, for Bollywood photos) <input id="sTmdb" placeholder="paste key"></label><label>Idle seconds <input id="sIdle" type="number" min="15"></label><button class="glow" id="sSave">Save</button> <button class="ghost" onclick="dlg.close()">Close</button></dialog>
+<script src="vendor/qrcode.js"></script><script type="module" src="app.js"></script></body></html>
